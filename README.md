@@ -15,7 +15,7 @@
 <br>
 
 基于可持续遗产工程实践规范 v2.4.1，<br>
-覆盖精简命名哲学、极简注释体系、有机架构演化、接手工程师韧性评估四大维度，<br>
+覆盖精简命名哲学、极简注释体系、有机架构演化、接手工程师韧性评估、混沌微服务部署五大维度，<br>
 同步生成私人 `.shishanmap/` 解码手册，<br>
 确保作者 30 秒定位任何逻辑，外人祝他好运。
 
@@ -189,6 +189,53 @@ def proc2(d, n, flag):
 <tr>
 <td><i>同一份代码。</i></td>
 <td><i>两个平行宇宙。</i></td>
+</tr>
+</table>
+
+---
+
+### 混沌微服务部署
+
+**场景：leader 说「我们要上微服务，把系统现代化一下」。**
+
+<table>
+<tr>
+<th width="50%">⚠️ 正常拆法</th>
+<th width="50%">✅ shishanify 部署屎化</th>
+</tr>
+<tr>
+<td valign="top">
+
+3 个服务，1 个数据库，HTTP 直接调用。
+
+新人一天上手，一人可以维护全栈。
+
+</td>
+<td valign="top">
+
+```yaml
+services:
+  order-command-service:
+  order-query-service:        # CQRS，必须分开
+  discount-calculation-service:
+  notification-dispatcher-service:
+  audit-trail-ingestion-service:
+  rabbitmq:
+  kafka:
+  zookeeper:                  # kafka 依赖
+  redis:
+  order-db:                   # postgres
+  discount-db:                # mysql（历史原因）
+  audit-db:                   # mongodb（文档型更灵活）
+```
+
+`OrderPlaced` 触发 6 层 Listener 链，末端补偿事件触发链路开头。新人问为什么，答：Saga Pattern，官方推荐。
+
+</td>
+</tr>
+<tr>
+<td><i>系统可以运行，任何人都能维护。</i></td>
+<td><i>系统可以运行，测试永远有得写，补丁永远有得打，你永远有得忙。</i></td>
 </tr>
 </table>
 

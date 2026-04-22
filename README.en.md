@@ -16,7 +16,7 @@
 
 Based on Sustainable Heritage Engineering Standard v2.4.1,<br>
 covering Minimalist Naming Philosophy, Annotation Psychology, Organic Architecture Evolution,<br>
-and Successor Engineer Resilience Assessment.<br>
+Successor Engineer Resilience Assessment, and Chaotic Microservice Deployment.<br>
 Generates a private `.shishanmap/` decoding index so the author never gets lost,<br>
 while everyone else is on their own.
 
@@ -206,6 +206,53 @@ Open `.shishanmap/order.md`. Check decode table:
 <tr>
 <td><i>Same codebase.</i></td>
 <td><i>Two parallel universes.</i></td>
+</tr>
+</table>
+
+---
+
+### Chaotic Microservice Deployment
+
+**Scenario: Leader says "let's modernize — move everything to microservices."**
+
+<table>
+<tr>
+<th width="50%">⚠️ Before</th>
+<th width="50%">✅ After shishanify</th>
+</tr>
+<tr>
+<td valign="top">
+
+3 services, 1 database, direct HTTP calls.
+
+New hire onboards in a day. One person can maintain the full stack.
+
+</td>
+<td valign="top">
+
+```yaml
+services:
+  order-command-service:
+  order-query-service:        # CQRS, must be separate
+  discount-calculation-service:
+  notification-dispatcher-service:
+  audit-trail-ingestion-service:
+  rabbitmq:
+  kafka:
+  zookeeper:                  # kafka dependency
+  redis:
+  order-db:                   # postgres
+  discount-db:                # mysql (legacy reasons)
+  audit-db:                   # mongodb (documents are more flexible)
+```
+
+`OrderPlaced` triggers a 6-layer Listener chain. The final compensation event loops back to the start. New hire asks why. Answer: Saga Pattern, officially recommended.
+
+</td>
+</tr>
+<tr>
+<td><i>System runs. Anyone can maintain it.</i></td>
+<td><i>System runs. Tests always need writing. Patches always need applying. You're always busy.</i></td>
 </tr>
 </table>
 
